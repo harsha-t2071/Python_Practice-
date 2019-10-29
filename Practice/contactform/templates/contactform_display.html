@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>
+        Contactform Display
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+<style>
+    td,th{
+        padding: 10px 20px;
+        font-size: 20px;
+        background-color: aquamarine;
+    }
+</style>
+
+<body>
+{% if edata %}
+    <center>
+        <h2>Employee data</h2>
+    <table border="2px">
+    <thead>
+            <tr>
+                <th>Emp name</th>
+                <th>Emp email</th>
+                <th>Emp salary</th>
+                <th>Emp location</th>
+            </tr>
+    </thead>
+        {% for i in edata %}
+    <tbody>
+        <tr>
+            <td>{{ i.name }}</td>
+            <td>{{i.email  }}</td>
+            <td>{{ i.salary }}</td>
+            <td>{{ i.location }}</td>
+        </tr>
+    </tbody>
+        {% endfor %}
+    </table>
+    </center>
+{% else %}
+<h2>data is not available</h2>
+{% endif %}
+</body>
+</html>

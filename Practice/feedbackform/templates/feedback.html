@@ -1,0 +1,62 @@
+<html>
+<head><title>
+    Feedback Form
+</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+    b{
+        font-size:20px;
+        font-family:cursive;
+        color:red;
+
+    }
+</style>
+<body>
+    <div class = "container">
+        <div class = "row">
+            <div class="off-set-md-3 col-md" col-md-6>
+
+             {% if fdata %}
+                 <h2 class="text-center">Your Feedbacks Are </h2>
+             {% endif %}
+
+                {% if fdata %}
+                {% for i in fdata %}
+                {% if i.rating >= 5 and i.rating <= 10 %}
+                <b>
+                    Name : {{ i.name.capitalize}}<br>
+                    Rating : {{ i.rating }} <br>
+                    Feedback :{{ i.feedback }} <br>
+                    Date:{{ i.date }} <br> <br>
+                </b>
+                {% endif %}
+
+            {% endfor %}
+
+            {% else %}
+            <h2 class ="text-center">No Feedback Are Available </h2>
+            {% endif %}
+            <h2 class = "text-center"> Please enter your feedback </h2>
+
+            <form method="POST">
+                {% csrf_token %}
+                {{ fform }}<br>
+
+                <center>
+                    <input type = "submit" value="Submit" class = "btn btn-success">
+                    <input type = "reset" value="Reset" class = "btn btn-danger">
+                </center>
+            </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
